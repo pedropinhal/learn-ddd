@@ -1,0 +1,16 @@
+﻿@model Web.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>title</h2>
+
+@{
+    foreach (var fixture in Model.Fixtures)
+    {
+        @Html.Raw("fixture")
+  
+    }
+}
