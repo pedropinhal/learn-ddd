@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC2C11FB-FEE0-4298-8DD8-BA15D1EC5B1B}</ProjectGuid>
+    <ProjectGuid>{836582F7-D145-4AD9-91E6-8538EA7F04BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain.CommandStack</RootNamespace>
-    <AssemblyName>Domain.CommandStack</AssemblyName>
+    <RootNamespace>Domain.Infrastructure</RootNamespace>
+    <AssemblyName>Domain.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Rebus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rebus.0.99.2\lib\NET45\Rebus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,23 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandData.cs" />
-    <Compile Include="CreateFixtureCommand.cs" />
+    <Compile Include="Bus.cs" />
+    <Compile Include="IBus.cs" />
+    <Compile Include="IMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain.Infrastructure\Domain.Infrastructure.csproj">
-      <Project>{836582F7-D145-4AD9-91E6-8538EA7F04BF}</Project>
-      <Name>Domain.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain.Persistence\Domain.Persistence.csproj">
-      <Project>{D3D09062-7EAC-4A96-849E-AB0C1326F33B}</Project>
-      <Name>Domain.Persistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{200D1189-9F84-4108-8C7E-C41387DA5011}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

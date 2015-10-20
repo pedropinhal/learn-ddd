@@ -122,6 +122,10 @@
       <Project>{AC2C11FB-FEE0-4298-8DD8-BA15D1EC5B1B}</Project>
       <Name>Domain.CommandStack</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain.Infrastructure\Domain.Infrastructure.csproj">
+      <Project>{836582f7-d145-4ad9-91e6-8538ea7f04bf}</Project>
+      <Name>Domain.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.ReadStack\Domain.ReadStack.csproj">
       <Project>{2BE618BD-FCAB-4ACD-A9F7-1F2CDAE4A6FB}</Project>
       <Name>Domain.ReadStack</Name>

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Domain;
 using Domain.CommandStack;
 using Domain.ReadStack;
 using Web.Models;
@@ -16,8 +15,11 @@ namespace Web.ApplicationServices
 
         public void CreateFixture()
         {
-            var commandData = new CommandData();
+            var command = new CreateFixtureCommand();
+            MvcApplication.Bus.Send(command);
+            /*var commandData = new CommandData();
             commandData.Fixtures.Add(new Fixture());
+            */
         }
     }
 }

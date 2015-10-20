@@ -13,15 +13,15 @@ namespace BusDemo
     {
         public static void Main()
         {
-            const string InputQueueName = "my-app.input";
+            const string inputQueueName = "my-app.input";
             using (var activator = new BuiltinHandlerActivator())
             using (var timer = new Timer())
             {
                 activator.Register(() => new PrintDateTime());
 
                 var bus = Configure.With(activator)
-                    .Transport(t => t.UseMsmq(InputQueueName))
-                    .Routing(r => r.TypeBased().Map<DateTime>(InputQueueName))
+                    .Transport(t => t.UseMsmq(inputQueueName))
+                    .Routing(r => r.TypeBased().Map<DateTime>(inputQueueName))
                     .Start();
 
                 timer.Elapsed += delegate { bus.Send(DateTime.Now).Wait(); };
