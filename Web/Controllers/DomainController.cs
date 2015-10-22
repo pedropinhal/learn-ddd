@@ -5,7 +5,13 @@ namespace Web.Controllers
 {
     public class DomainController : Controller
     {
-        readonly ApplicationService _applicationService = new ApplicationService();
+        private readonly IApplicationService _applicationService;
+
+        public DomainController(IApplicationService applicationService)
+        {
+            _applicationService = applicationService;
+        }
+
         // GET: Domain
         public ActionResult Index()
         {

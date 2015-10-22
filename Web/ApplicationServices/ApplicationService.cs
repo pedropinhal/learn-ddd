@@ -1,12 +1,20 @@
 ﻿using System.Linq;
 using Domain.CommandStack;
+using Domain.Infrastructure;
 using Domain.ReadStack;
 using Web.Models;
 
 namespace Web.ApplicationServices
 {
-    public class ApplicationService
+    public class ApplicationService : IApplicationService
     {
+        private readonly IBus _bus;
+
+        public ApplicationService(IBus bus)
+        {
+            _bus = bus;
+        }
+
         public IndexViewModel GetFixtures()
         {
             var data = new Data().ReadOnlyFixtures.ToList();
@@ -16,7 +24,7 @@ namespace Web.ApplicationServices
         public void CreateFixture()
         {
             var command = new CreateFixtureCommand();
-            MvcApplication.Bus.Send(command);
+            _bus.Send(command);
             /*var commandData = new CommandData();
             commandData.Fixtures.Add(new Fixture());
             */

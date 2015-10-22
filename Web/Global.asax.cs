@@ -1,18 +1,14 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Domain.Infrastructure;
 
 namespace Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static IBus Bus { get; set; }
-        
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            Bus = new Bus();
         }
     }
 }
