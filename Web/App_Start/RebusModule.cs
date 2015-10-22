@@ -1,13 +1,14 @@
-﻿using Ninject;
+﻿using Domain.CommandStack;
+using Domain.CommandStack.Handlers;
+using Ninject;
 using Ninject.Modules;
 using Rebus.Activation;
-using Rebus.Bus;
 using Rebus.Config;
 using Rebus.Handlers;
 using Rebus.Routing.TypeBased;
 using Rebus.Transport.Msmq;
 
-namespace Domain.Infrastructure
+namespace Web
 {
     public class RebusModule : NinjectModule
     {
@@ -16,14 +17,14 @@ namespace Domain.Infrastructure
         {
             Kernel.Bind<IContainerAdapter>().To<Rebus.Ninject.NinjectContainerAdapter>().
                 WithConstructorArgument("kernel", Kernel);
-            //Kernel.Bind<IHandleMessages<TestEvent>>().To<TestHandler1>();
+            Kernel.Bind<IHandleMessages<CreateFixtureCommand>>().To<FixtureHandler>();
             //Kernel.Bind<IHandleMessages<TestEvent>>().To<TestHandler2>();
 
             var adapter = Kernel.Get<IContainerAdapter>();
             
             var bus = Configure.With(adapter)
                 .Transport(t => t.UseMsmq(InputQueueName))
-                //.Routing(r => r.TypeBased().Map<TestEvent>(inputQueueName))
+                .Routing(r => r.TypeBased().Map<CreateFixtureCommand>(InputQueueName))
                 .Start();
             
         }
